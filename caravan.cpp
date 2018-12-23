@@ -1,9 +1,9 @@
 /*-----------------------------------------------------------------------------
- *				HTBLA-Leonding / Class: <your class name here>
+ *				HTBLA-Leonding / Class: 2DHIF
  *-----------------------------------------------------------------------------
  * Exercise Number: #exercise_number#
  * File:			caravan.c
- * Author(s):		Peter Bauer
+ * Author(s):		Kowatschek Samuel
  * Due Date:		#due#
  *-----------------------------------------------------------------------------
  * Description:
@@ -12,8 +12,12 @@
 */
 #include "caravan.h"
 
+#define COUNT_CARAVANS 5
+
 struct CaravanImplementation{
     int length;
+    bool is_used = false;
+    PackAnimal animal;
 };
 
 struct CaravanImplementation c1;
@@ -30,10 +34,11 @@ Caravan new_caravan()
     
     for(int i = 0; i < 5; i++)
     {
-        if(caravans[i]->length==0){
+        if(!caravans[i]->is_used){
             return caravans[i];
         }
     }
+    return 0;
 }
 
 int get_length(Caravan caravan)
@@ -41,8 +46,13 @@ int get_length(Caravan caravan)
     return caravan->length;
 }
 
+/*
+ *Deletes a caravan out of an array
+*/
 void delete_caravan(Caravan caravan)
 {
+    
+    
 }
 
 void add_pack_animal(Caravan caravan, PackAnimal animal)
@@ -55,6 +65,7 @@ void remove_pack_animal(Caravan caravan, PackAnimal animal)
 
 int get_caravan_load(Caravan caravan)
 {
+    return 0;
 }
 
 void unload(Caravan caravan)
@@ -63,4 +74,9 @@ void unload(Caravan caravan)
 
 int get_caravan_speed(Caravan caravan)
 {
+    return 0;
+}
+
+void optimize_load(Caravan caravan){
+
 }
