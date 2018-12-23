@@ -14,31 +14,24 @@
 
 #define COUNT_CARAVANS 5
 
+/*
+    Basically our Node
+*/
 struct CaravanImplementation{
     int length;
-    bool is_used = false;
     PackAnimal animal;
+    Caravan next;
 };
 
-struct CaravanImplementation c1;
-struct CaravanImplementation c2;
-struct CaravanImplementation c3;
-struct CaravanImplementation c4;
-struct CaravanImplementation c5;
+Caravan head;
 
-static Caravan caravans[] = {&c1, &c2, &c3, &c4, &c5};
-
-
+/*
+    Creates a new Caravan
+*/
 Caravan new_caravan()
 {
-    
-    for(int i = 0; i < 5; i++)
-    {
-        if(!caravans[i]->is_used){
-            return caravans[i];
-        }
-    }
-    return 0;
+    head = 0;
+    return head;
 }
 
 int get_length(Caravan caravan)
@@ -47,12 +40,11 @@ int get_length(Caravan caravan)
 }
 
 /*
- *Deletes a caravan out of an array
+ *Deletes a caravan 
 */
 void delete_caravan(Caravan caravan)
 {
-    
-    
+    head = 0;
 }
 
 void add_pack_animal(Caravan caravan, PackAnimal animal)
