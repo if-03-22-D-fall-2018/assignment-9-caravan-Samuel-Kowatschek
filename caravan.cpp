@@ -30,8 +30,6 @@ Creates a new Caravan
 */
 Caravan new_caravan()
 {
-    head = 0;
-    return head;
 }
 
 /*
@@ -39,7 +37,7 @@ Returns the length of a caravan
 */
 int get_length(Caravan caravan)
 {
-    return caravan->length;
+    return caravan ->length;
 }
 
 /*
@@ -47,7 +45,6 @@ Deletes a caravan
 */
 void delete_caravan(Caravan caravan)
 {
-    head = 0;
 }
 
 /*
