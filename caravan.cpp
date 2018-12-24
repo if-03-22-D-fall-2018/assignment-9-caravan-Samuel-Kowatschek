@@ -11,6 +11,9 @@
  *-----------------------------------------------------------------------------
 */
 #include "caravan.h"
+#include <cstdlib>
+#include <stdlib.h>
+#include 
 
 #define COUNT_CARAVANS 5
 
@@ -20,16 +23,21 @@ Basically our Node
 struct CaravanImplementation{
     int length;
     PackAnimal animal;
-    Caravan next;
+    struct CaravanImplementation* next;
 };
 
-Caravan head;
+malloc(sizeof(struct CaravanImplementation));
 
 /*
 Creates a new Caravan
 */
 Caravan new_caravan()
 {
+    /*head -> animal = 0;
+    head -> next = 0;
+    head -> length = 0;
+    return head;*/
+    return 0;
 }
 
 /*
