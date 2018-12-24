@@ -15,7 +15,7 @@
 #define COUNT_CARAVANS 5
 
 /*
-    Basically our Node
+Basically our Node
 */
 struct CaravanImplementation{
     int length;
@@ -26,7 +26,7 @@ struct CaravanImplementation{
 Caravan head;
 
 /*
-    Creates a new Caravan
+Creates a new Caravan
 */
 Caravan new_caravan()
 {
@@ -34,41 +34,64 @@ Caravan new_caravan()
     return head;
 }
 
+/*
+Returns the length of a caravan
+*/
 int get_length(Caravan caravan)
 {
     return caravan->length;
 }
 
 /*
- *Deletes a caravan 
+Deletes a caravan 
 */
 void delete_caravan(Caravan caravan)
 {
     head = 0;
 }
 
+/*
+adds a pack animal to a given caravan
+*/
 void add_pack_animal(Caravan caravan, PackAnimal animal)
 {
 }
 
+/*
+removes a pack animal from a caravan
+*/
 void remove_pack_animal(Caravan caravan, PackAnimal animal)
 {
 }
 
+/*
+returns the load of a caravan given
+*/
 int get_caravan_load(Caravan caravan)
 {
     return 0;
 }
 
+/*
+unloads a caravan
+*/
+
 void unload(Caravan caravan)
 {
 }
 
+/*
+returns the speed of a caravan
+*/
 int get_caravan_speed(Caravan caravan)
 {
     return 0;
 }
 
+/*
+Verteilt die Last der Ballen so auf die einzelnen Tiere, 
+dass die Geschwindigkeit der Karawane maximal ist.
+*/
 void optimize_load(Caravan caravan){
 
 }
