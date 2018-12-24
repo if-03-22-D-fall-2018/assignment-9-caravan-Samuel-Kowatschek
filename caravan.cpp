@@ -45,7 +45,7 @@ Returns the length of a caravan
 */
 int get_length(Caravan caravan)
 {
-    return caravan ->length;
+    return caravan -> length;
 }
 
 /*
