@@ -51,14 +51,16 @@ Deletes a caravan
 */
 void delete_caravan(Caravan caravan)
 {
-    Caravan tmp;
-    while (head != 0)
+    Caravan current = head;
+    while (current != 0)
     {
-       tmp = head;
-       head = head->next;
-       free(tmp);
+        if(caravan == current->next) {
+            current -> next = caravan -> next;
+            free(caravan);
+            return;
+        }
+       current = current->next;
     }
-
 }
 
 /*
