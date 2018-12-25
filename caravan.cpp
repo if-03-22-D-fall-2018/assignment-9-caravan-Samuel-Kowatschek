@@ -13,7 +13,6 @@
 #include "caravan.h"
 #include <cstdlib>
 #include <stdlib.h>
-#include 
 
 #define COUNT_CARAVANS 5
 
@@ -26,18 +25,17 @@ struct CaravanImplementation{
     struct CaravanImplementation* next;
 };
 
-malloc(sizeof(struct CaravanImplementation));
+Caravan head = (Caravan)malloc(sizeof(struct CaravanImplementation));
 
 /*
 Creates a new Caravan
 */
 Caravan new_caravan()
 {
-    /*head -> animal = 0;
+    head -> animal = 0;
     head -> next = 0;
     head -> length = 0;
-    return head;*/
-    return 0;
+    return head;
 }
 
 /*
@@ -53,6 +51,14 @@ Deletes a caravan
 */
 void delete_caravan(Caravan caravan)
 {
+    Caravan tmp;
+    while (head != 0)
+    {
+       tmp = head;
+       head = head->next;
+       free(tmp);
+    }
+
 }
 
 /*
