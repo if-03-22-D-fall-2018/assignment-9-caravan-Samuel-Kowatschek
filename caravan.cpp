@@ -19,23 +19,28 @@
 /*
 Basically our Node
 */
-struct CaravanImplementation{
-    int length;
+
+struct Node{
     PackAnimal animal;
-    struct CaravanImplementation* next;
+    struct Node *next;
 };
 
-Caravan head = (Caravan)malloc(sizeof(struct CaravanImplementation));
+struct CaravanImplementation{
+    int length;
+    struct Node* head = (struct Node*)malloc(sizeof(struct Node));
+};
+
+Caravan c = (Caravan)malloc(sizeof(Caravan));
 
 /*
 Creates a new Caravan
 */
 Caravan new_caravan()
 {
-    head -> animal = 0;
-    head -> next = 0;
-    head -> length = 0;
-    return head;
+    c->head->animal = 0;
+    c->head -> next = 0;
+    c -> length = 0;
+    return c;
 }
 
 /*
@@ -51,22 +56,12 @@ Deletes a caravan
 */
 void delete_caravan(Caravan caravan)
 {
-    Caravan current = head; //the current caravan
-    while (current != 0)    //if the current caravan equals 0 the loop should end (that would mean that there are no more list elements)
+    struct Node* current = caravan->head; 
+    while (current != 0)   
     {
-        if(caravan == head){    //if the given caravan equals the head, the head should be free'd
-            
-            free(head);
-            return;             //also here the loop and the whole function should end, because we already deleted the caravan
-        }
-        else if(caravan == current->next) { //if the given caravan equals the next caravan after current, 
-            current -> next = caravan -> next;  //the caravan after current should be caravan-> next. with this we skip the caravan 
-            free(caravan);                      //and are able to clean if afterways
-            return;
-        }
-       current = current->next;         //the current caravan is getting updated
-    }
-    free(current);              
+        free(current);
+       current = current->next;
+    }          
 }
 
 /*
