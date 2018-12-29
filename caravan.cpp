@@ -37,7 +37,8 @@ Creates a new Caravan
 */
 Caravan new_caravan()
 {
-    c->head = 0;
+    c->head->animal = 0;
+    c->head -> next = 0;
     c -> length = 0;
     return c;
 }
