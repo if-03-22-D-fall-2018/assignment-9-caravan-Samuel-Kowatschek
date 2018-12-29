@@ -66,7 +66,7 @@ void delete_caravan(Caravan caravan)
         }
        current = current->next;         //the current caravan is getting updated
     }
-    sfree(current);              
+    //sfree(current);
 }
 
 /*
@@ -86,6 +86,9 @@ removes a pack animal from a caravan
 */
 void remove_pack_animal(Caravan caravan, PackAnimal animal)
 {
+    caravan->length--;
+    caravan->animal = 0;
+    delete_animal(animal);
 }
 
 /*
