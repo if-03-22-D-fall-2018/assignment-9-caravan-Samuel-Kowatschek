@@ -13,8 +13,6 @@
 #include <stdlib.h>
 #include "caravan.h"
 #include "general.h"
-#include "pack_animal.h"
-
 
 #define COUNT_CARAVANS 5
 
@@ -30,7 +28,7 @@ struct CaravanImplementation{
 Caravan head = (Caravan)malloc(sizeof(struct CaravanImplementation));
 
 /*
-Creates a new Caravan
+    Creates a new Caravan and sets all values to 0
 */
 Caravan new_caravan()
 {
@@ -76,13 +74,10 @@ adds a pack animal to a given caravan
 */
 void add_pack_animal(Caravan caravan, PackAnimal animal)
 {
-    Caravan current = head;
-    while(current != 0){
-        if(animal->type != 0 && current == caravan)
-        {
-            current->animal = animal;
-            return;
-        }
+    if(animal != 0 && get_caravan(animal) == 0){
+        caravan->animal == animal;
+        caravan->length++;
+        add_to_caravan(animal, caravan);
     }
 }
 
