@@ -10,9 +10,11 @@
  * <your description here>
  *-----------------------------------------------------------------------------
 */
-#include "caravan.h"
-#include <cstdlib>
 #include <stdlib.h>
+#include "caravan.h"
+#include "general.h"
+#include "pack_animal.h"
+
 
 #define COUNT_CARAVANS 5
 
@@ -56,17 +58,17 @@ void delete_caravan(Caravan caravan)
     {
         if(caravan == head){    //if the given caravan equals the head, the head should be free'd
             
-            free(head);
+            sfree(head);
             return;             //also here the loop and the whole function should end, because we already deleted the caravan
         }
         else if(caravan == current->next) { //if the given caravan equals the next caravan after current, 
             current -> next = caravan -> next;  //the caravan after current should be caravan-> next. with this we skip the caravan 
-            free(caravan);                      //and are able to clean if afterways
+            sfree(caravan);                      //and are able to clean if afterways
             return;
         }
        current = current->next;         //the current caravan is getting updated
     }
-    free(current);              
+    sfree(current);              
 }
 
 /*
@@ -74,6 +76,14 @@ adds a pack animal to a given caravan
 */
 void add_pack_animal(Caravan caravan, PackAnimal animal)
 {
+    Caravan current = head;
+    while(current != 0){
+        if(animal->type != 0 && current == caravan)
+        {
+            current->animal = animal;
+            return;
+        }
+    }
 }
 
 /*
