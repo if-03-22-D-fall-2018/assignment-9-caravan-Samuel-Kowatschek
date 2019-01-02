@@ -55,9 +55,11 @@ Deletes a caravan
 void delete_caravan(Caravan caravan)
 {
     Node_p current = caravan->head;
-    while(current != 0){
+    while(current != 0) {
+        delete_animal(current->animal);
         current = current->next;
     }
+    sfree(caravan);
 }
 
 /*
