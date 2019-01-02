@@ -62,7 +62,12 @@ adds a pack animal to a given caravan
 */
 void add_pack_animal(Caravan caravan, PackAnimal animal)
 {
+    Node_p current = caravan->head;
+    Node_p node_to_add = (Node_p)malloc(sizeof(struct Node));
+    node_to_add -> animal = animal;
+
     
+    current->next = node_to_add;
 }
 
 /*
