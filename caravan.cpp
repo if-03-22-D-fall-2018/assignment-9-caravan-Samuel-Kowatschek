@@ -98,9 +98,9 @@ void remove_pack_animal(Caravan caravan, PackAnimal animal)
             current = current->next;
         }
         if(current->next->animal == animal && counter<caravan->length){
+            Node_p tmp = current->next;
             current->next = current->next->next;
-            current = current->next;
-            sfree(current);
+            sfree(tmp);
             caravan->length--;
         }
     }
