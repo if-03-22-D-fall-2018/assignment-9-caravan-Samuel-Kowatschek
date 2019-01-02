@@ -54,7 +54,10 @@ Deletes a caravan
 */
 void delete_caravan(Caravan caravan)
 {
-    sfree(caravan);
+    Node_p current = caravan->head;
+    while(current != 0){
+        current = current->next;
+    }
 }
 
 /*
@@ -74,7 +77,8 @@ void add_pack_animal(Caravan caravan, PackAnimal animal)
         }
         current->next = node_to_add;
     }
-    caravan->length+=1;
+    add_to_caravan(animal, caravan);
+    caravan->length++;
     }
 }
 
@@ -83,7 +87,21 @@ removes a pack animal from a caravan
 */
 void remove_pack_animal(Caravan caravan, PackAnimal animal)
 {
-    
+    if(animal!=0){
+        Node_p current = caravan->head;
+        int counter = 0; //counter so i can check at the end if the counter is smaller than the length of the list
+                        //so i can see if the animal was found
+        while(current->next != 0 && current->next->animal != animal){
+            counter++;
+            current = current->next;
+        }
+        if(current->next->animal == animal && counter<caravan->length){
+            current->next = current->next->next;
+            current = current->next;
+            sfree(current);
+            caravan->length--;
+        }
+    }
 }
 
 /*
