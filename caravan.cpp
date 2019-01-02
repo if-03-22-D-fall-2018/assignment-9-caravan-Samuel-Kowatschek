@@ -16,26 +16,29 @@
 
 #define COUNT_CARAVANS 5
 
-/*
-Basically our Node
-*/
-struct CaravanImplementation{
-    int length;
+typedef struct Node* Node_p;
+
+struct Node
+{
     PackAnimal animal;
-    struct CaravanImplementation* next;
+    struct Node* next = (Node_p)malloc(sizeof(struct Node));
 };
 
-Caravan head = (Caravan)malloc(sizeof(struct CaravanImplementation));
+
+
+struct CaravanImplementation{
+    int length;
+    Node_p head = (Node_p)malloc(sizeof(struct Node));
+};
 
 /*
-    Creates a new Caravan and sets all values to 0
+    Creates a new Caravan
 */
 Caravan new_caravan()
 {
-    head -> animal = 0;
-    head -> next = 0;
-    head -> length = 0;
-    return head;
+    Caravan caravan =(Caravan)malloc(sizeof(struct CaravanImplementation));
+    caravan->length = 0;
+    return caravan;
 }
 
 /*
@@ -51,22 +54,7 @@ Deletes a caravan
 */
 void delete_caravan(Caravan caravan)
 {
-    Caravan current = head; //the current caravan
-    while (current != 0)    //if the current caravan equals 0 the loop should end (that would mean that there are no more list elements)
-    {
-        if(caravan == head){    //if the given caravan equals the head, the head should be free'd
-            
-            sfree(head);
-            return;             //also here the loop and the whole function should end, because we already deleted the caravan
-        }
-        else if(caravan == current->next) { //if the given caravan equals the next caravan after current, 
-            current -> next = caravan -> next;  //the caravan after current should be caravan-> next. with this we skip the caravan 
-            sfree(caravan);                      //and are able to clean if afterways
-            return;
-        }
-       current = current->next;         //the current caravan is getting updated
-    }
-    //sfree(current);
+    sfree(caravan);
 }
 
 /*
@@ -74,11 +62,7 @@ adds a pack animal to a given caravan
 */
 void add_pack_animal(Caravan caravan, PackAnimal animal)
 {
-    if(animal != 0 && get_caravan(animal) == 0){
-        caravan->animal == animal;
-        caravan->length++;
-        add_to_caravan(animal, caravan);
-    }
+    
 }
 
 /*
@@ -86,9 +70,7 @@ removes a pack animal from a caravan
 */
 void remove_pack_animal(Caravan caravan, PackAnimal animal)
 {
-    caravan->length--;
-    caravan->animal = 0;
-    delete_animal(animal);
+    
 }
 
 /*
