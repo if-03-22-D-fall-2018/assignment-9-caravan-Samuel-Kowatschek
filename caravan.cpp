@@ -21,7 +21,7 @@ typedef struct Node* Node_p;
 struct Node
 {
     PackAnimal animal;
-    struct Node* next/* = (Node_p)malloc(sizeof(struct Node))*/;
+    struct Node* next;
 };
 
 
