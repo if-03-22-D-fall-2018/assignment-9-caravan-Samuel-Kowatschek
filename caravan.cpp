@@ -70,11 +70,16 @@ adds a pack animal to a given caravan
 */
 void add_pack_animal(Caravan caravan, PackAnimal animal)
 {
-    if(animal != 0) {
-      Node_p current = caravan->head;
-      Node_p node_to_add = (Node_p)malloc(sizeof(struct Node));
-      node_to_add -> animal = animal;
-      node_to_add->next = 0;
+    if(animal != 0) 
+    {
+        if(get_caravan(animal) != 0 && get_caravan(animal) != caravan){
+            remove_pack_animal(get_caravan(animal), animal);
+        }
+
+        Node_p current = caravan->head;
+        Node_p node_to_add = (Node_p)malloc(sizeof(struct Node));
+        node_to_add -> animal = animal;
+        node_to_add->next = 0;
 
         if(caravan->head == 0)
         {
@@ -84,14 +89,14 @@ void add_pack_animal(Caravan caravan, PackAnimal animal)
         {
             while(current->next != 0)
             {
-              if(current->animal == animal) return;
-              current = current->next;
+                if(current->animal == animal) return;
+                current = current->next;
             }
             if(current->animal == animal) return;
             current->next = node_to_add;
-        } 
-        add_to_caravan(animal, caravan);
-        caravan->length++;
+        }
+            add_to_caravan(animal, caravan);
+            caravan->length++;
     }
 }
 
