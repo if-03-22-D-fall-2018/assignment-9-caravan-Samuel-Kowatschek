@@ -60,8 +60,13 @@ void delete_caravan(Caravan caravan)
 {
     Node_p current = caravan->head;
     while(current != 0) {
-        delete_animal(current->animal);
+      // BAU: removed delete_animal, since this does not delete the Node but
+      // more deletes the animal itself.
+        // delete_animal(current->animal);
+        // BAU: inserted code to delete the node.
+        Node_p to_be_deleted = current;
         current = current->next;
+        sfree(to_be_deleted);
     }
     sfree(caravan);
 }
