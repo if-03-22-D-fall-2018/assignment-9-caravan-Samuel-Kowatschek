@@ -113,6 +113,7 @@ void remove_pack_animal(Caravan caravan, PackAnimal animal)
         }
         if(current != 0 && current->animal == animal)
         {
+            unload(current->animal);
             delete_animal(current->animal);
             remove_from_caravan(animal, caravan);
             caravan->length--;
@@ -125,7 +126,15 @@ returns the load of a caravan given
 */
 int get_caravan_load(Caravan caravan)
 {
-    return 0;
+    Node_p current = caravan->head;
+    int load = 0;
+    while(current!=0)
+    {
+        load+= get_load(current->animal);
+        current = current->next;
+    }
+    return load;
+
 }
 
 /*
@@ -134,6 +143,12 @@ unloads a caravan
 
 void unload(Caravan caravan)
 {
+    Node_p current = caravan->head;
+    while(current != 0)
+    {
+        unload(current->animal);
+        current = current->next;
+    }
 }
 
 /*
