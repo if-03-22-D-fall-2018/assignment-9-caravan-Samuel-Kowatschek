@@ -100,7 +100,7 @@ removes a pack animal from a caravan
 */
 void remove_pack_animal(Caravan caravan, PackAnimal animal)
 {
-    
+    /*
     if(animal!=0){
         Node_p current = caravan->head;
         Node_p before = (Node_p)malloc(sizeof(Node));    
@@ -118,7 +118,32 @@ void remove_pack_animal(Caravan caravan, PackAnimal animal)
         }
         
     }
-    
+    */
+   if(animal!=0){
+
+   
+   Node_p current = caravan->head;
+   Node_p prev;
+   if(current != 0 && current->animal == animal)
+   {
+       caravan->head = current->next;
+       sfree(current);
+       remove_from_caravan(animal, caravan);
+       caravan->length--;
+       return;
+   }
+   while(current != 0 && current->animal != animal)
+   {
+       prev = current;
+       current = current->next;
+   }
+   if(current==0) return;
+
+   prev->next = current->next;
+   sfree(current);
+   remove_from_caravan(animal, caravan);
+   caravan->length--;
+   }
 }
 
 /*
