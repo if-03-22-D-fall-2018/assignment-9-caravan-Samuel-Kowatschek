@@ -74,23 +74,28 @@ adds a pack animal to a given caravan
 */
 void add_pack_animal(Caravan caravan, PackAnimal animal)
 {
-  // BAU: please take care of indentation! Code is unreadable.
     if(animal != 0) {
       Node_p current = caravan->head;
       Node_p node_to_add = (Node_p)malloc(sizeof(struct Node));
       node_to_add -> animal = animal;
-      // BAU: set node_to_add->next to 0 to mark end of list
       node_to_add->next = 0;
-      if(caravan->head == 0){
-          caravan->head = node_to_add;
-      }else{
-          while(current->next != 0){
+
+        if(caravan->head == 0)
+        {
+            caravan->head = node_to_add;
+        }
+        else
+        {
+            while(current->next != 0)
+            {
+              if(current->animal == animal) return;
               current = current->next;
-          }
-          current->next = node_to_add;
-      }
-      add_to_caravan(animal, caravan);
-      caravan->length++;
+            }
+            if(current->animal == animal) return;
+            current->next = node_to_add;
+        } 
+        add_to_caravan(animal, caravan);
+        caravan->length++;
     }
 }
 
