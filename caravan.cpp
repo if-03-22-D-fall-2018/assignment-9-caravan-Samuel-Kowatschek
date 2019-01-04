@@ -28,7 +28,9 @@ struct Node
 
 struct CaravanImplementation{
     int length;
-    Node_p head = (Node_p)malloc(sizeof(struct Node));
+    // BAU: why do you allocate memory here? It should be sufficient to do this
+    // whenever you add a new element. So I put it under comment
+    Node_p head; // = (Node_p)malloc(sizeof(struct Node));
 };
 
 /*
@@ -38,6 +40,8 @@ Caravan new_caravan()
 {
     Caravan caravan =(Caravan)malloc(sizeof(struct CaravanImplementation));
     caravan->length = 0;
+    // BAU: initialized caravan->head to clearly determine empty list.
+    caravan->head = 0;
     return caravan;
 }
 
@@ -50,7 +54,7 @@ int get_length(Caravan caravan)
 }
 
 /*
-Deletes a caravan 
+Deletes a caravan
 */
 void delete_caravan(Caravan caravan)
 {
@@ -67,20 +71,23 @@ adds a pack animal to a given caravan
 */
 void add_pack_animal(Caravan caravan, PackAnimal animal)
 {
-    if(animal != 0){
-    Node_p current = caravan->head;
-    Node_p node_to_add = (Node_p)malloc(sizeof(struct Node));
-    node_to_add -> animal = animal;
-    if(caravan->head == 0){
-        caravan->head = node_to_add;
-    }else{
-        while(current->next != 0){
-            current = current->next;
-        }
-        current->next = node_to_add;
-    }
-    add_to_caravan(animal, caravan);
-    caravan->length++;
+  // BAU: please take care of indentation! Code is unreadable.
+    if(animal != 0) {
+      Node_p current = caravan->head;
+      Node_p node_to_add = (Node_p)malloc(sizeof(struct Node));
+      node_to_add -> animal = animal;
+      // BAU: set node_to_add->next to 0 to mark end of list
+      node_to_add->next = 0;
+      if(caravan->head == 0){
+          caravan->head = node_to_add;
+      }else{
+          while(current->next != 0){
+              current = current->next;
+          }
+          current->next = node_to_add;
+      }
+      add_to_caravan(animal, caravan);
+      caravan->length++;
     }
 }
 
@@ -131,7 +138,7 @@ int get_caravan_speed(Caravan caravan)
 }
 
 /*
-Verteilt die Last der Ballen so auf die einzelnen Tiere, 
+Verteilt die Last der Ballen so auf die einzelnen Tiere,
 dass die Geschwindigkeit der Karawane maximal ist.
 */
 void optimize_load(Caravan caravan){
