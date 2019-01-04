@@ -28,9 +28,7 @@ struct Node
 
 struct CaravanImplementation{
     int length;
-    // BAU: why do you allocate memory here? It should be sufficient to do this
-    // whenever you add a new element. So I put it under comment
-    Node_p head; // = (Node_p)malloc(sizeof(struct Node));
+    Node_p head; 
 };
 
 /*
@@ -110,8 +108,8 @@ void remove_pack_animal(Caravan caravan, PackAnimal animal)
         }
         if(current != 0 && current->animal == animal)
         {
-            
-            remove_from_caravan(current->animal, caravan);
+            delete_animal(current->animal);
+            remove_from_caravan(animal, caravan);
             caravan->length--;
         }
     }
