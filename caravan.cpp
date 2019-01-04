@@ -103,16 +103,15 @@ void remove_pack_animal(Caravan caravan, PackAnimal animal)
 {
     if(animal!=0){
         Node_p current = caravan->head;
-        int counter = 0; //counter so i can check at the end if the counter is smaller than the length of the list
-                        //so i can see if the animal was found
-        while(current->next != 0 && current->next->animal != animal){
-            counter++;
+        
+        while(current != 0 && current->animal != animal)
+        {
             current = current->next;
         }
-        if(current->next->animal == animal && counter<caravan->length){
-            Node_p tmp = current->next;
-            current->next = current->next->next;
-            sfree(tmp);
+        if(current != 0 && current->animal == animal)
+        {
+            
+            remove_from_caravan(current->animal, caravan);
             caravan->length--;
         }
     }
