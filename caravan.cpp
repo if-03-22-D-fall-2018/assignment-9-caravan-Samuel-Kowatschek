@@ -58,10 +58,6 @@ void delete_caravan(Caravan caravan)
 {
     Node_p current = caravan->head;
     while(current != 0) {
-      // BAU: removed delete_animal, since this does not delete the Node but
-      // more deletes the animal itself.
-        // delete_animal(current->animal);
-        // BAU: inserted code to delete the node.
         Node_p to_be_deleted = current;
         current = current->next;
         sfree(to_be_deleted);
@@ -104,21 +100,25 @@ removes a pack animal from a caravan
 */
 void remove_pack_animal(Caravan caravan, PackAnimal animal)
 {
+    
     if(animal!=0){
         Node_p current = caravan->head;
-        
+        Node_p before = (Node_p)malloc(sizeof(Node));    
         while(current != 0 && current->animal != animal)
         {
+            before = current;
             current = current->next;
         }
+        
         if(current != 0 && current->animal == animal)
         {
-            unload(current->animal);
-            delete_animal(current->animal);
-            remove_from_caravan(animal, caravan);
+            before->next = current->next;
+            sfree(current);
             caravan->length--;
         }
+        
     }
+    
 }
 
 /*
@@ -163,6 +163,7 @@ int get_caravan_speed(Caravan caravan)
         if(get_actual_speed(current->animal)<speed){
             speed = get_actual_speed(current->animal);
         }    
+        current = current->next;
     }
     return speed;
 }
