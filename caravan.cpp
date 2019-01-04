@@ -14,7 +14,7 @@
 #include "caravan.h"
 #include "general.h"
 
-#define COUNT_CARAVANS 5
+#define HORSE_MAX_SPEED 50
 
 typedef struct Node* Node_p;
 
@@ -156,7 +156,15 @@ returns the speed of a caravan
 */
 int get_caravan_speed(Caravan caravan)
 {
-    return 0;
+    Node_p current = caravan->head;
+    int speed = HORSE_MAX_SPEED;
+    while(current != 0)
+    {
+        if(get_actual_speed(current->animal)<speed){
+            speed = get_actual_speed(current->animal);
+        }    
+    }
+    return speed;
 }
 
 /*
