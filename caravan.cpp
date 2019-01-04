@@ -181,6 +181,14 @@ int get_caravan_speed(Caravan caravan)
 Verteilt die Last der Ballen so auf die einzelnen Tiere,
 dass die Geschwindigkeit der Karawane maximal ist.
 */
-void optimize_load(Caravan caravan){
-
+void optimize_load(Caravan caravan)
+{
+    int load = get_caravan_load(caravan);
+    int avg = (int) (load / caravan->length);
+    Node_p current = caravan->head;
+    unload(caravan);
+    while(current != 0){
+        add_load(current->animal, avg);
+        current = current->next;
+    }
 }
