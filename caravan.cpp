@@ -15,6 +15,7 @@
 #include "general.h"
 
 #define HORSE_MAX_SPEED 50
+#define CAMEL_MAX_SPEED 20
 
 typedef struct Node* Node_p;
 
@@ -184,11 +185,39 @@ dass die Geschwindigkeit der Karawane maximal ist.
 void optimize_load(Caravan caravan)
 {
     int load = get_caravan_load(caravan);
-    int avg = (int) (load / caravan->length);
+    int lenCamels = 0;
+    int lenHorses = 0;
     Node_p current = caravan->head;
-    unload(caravan);
-    while(current != 0){
-        add_load(current->animal, avg);
-        current = current->next;
+    int fastestHorse = 0;
+    int slowestHorse = HORSE_MAX_SPEED;
+    int fastestCamel = 0;
+    int slowestCamel = CAMEL_MAX_SPEED;
+    while(current != 0)
+    {  
+        if(get_max_speed(current->animal) == CAMEL_MAX_SPEED)
+        { 
+            lenCamels++;
+            if(get_actual_speed(current->animal) > fastestCamel)
+            {
+                fastestCamel = get_actual_speed(current->animal);
+            }else if(get_actual_speed(current->animal)<slowestCamel)
+            {
+                slowestCamel = get_actual_speed(current->animal);
+            }
+        else
+        {
+            lenCamels++;
+            if(get_actual_speed(current->animal) > fastestHorse)
+            {
+                fastestHorse = get_actual_speed(current->animal);
+            }else if(get_actual_speed(current->animal)<slowestHorse)
+            {
+                slowestHorse = get_actual_speed(current->animal);
+            }
+            lenHorses++;   
+        }
     }
+    
+
+
 }
