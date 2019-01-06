@@ -200,10 +200,12 @@ void optimize_load(Caravan caravan)
             if(get_actual_speed(current->animal) > fastestCamel)
             {
                 fastestCamel = get_actual_speed(current->animal);
-            }else if(get_actual_speed(current->animal)<slowestCamel)
+            }
+            else if(get_actual_speed(current->animal)<slowestCamel)
             {
                 slowestCamel = get_actual_speed(current->animal);
             }
+        }
         else
         {
             lenCamels++;
@@ -216,8 +218,8 @@ void optimize_load(Caravan caravan)
             }
             lenHorses++;   
         }
+        current = current -> next;
     }
-    
-
-
 }
+
+
